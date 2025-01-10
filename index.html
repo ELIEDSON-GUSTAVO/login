@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site com Memória</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        h2 {
+            color: #555;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        select {
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 10px 15px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f7f7f7;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tbody tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            background-color: #fff;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        #importStatus {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Site com Memória</h1>
+
+    <h2>Formulário</h2>
+    <input type="text" id="inputName" placeholder="Digite seu nome">
+    <input type="number" id="inputAge" placeholder="Digite sua idade">
+    <select id="inputOptions">
+        <option value="">Selecione uma opção</option>
+        <option value="option1">Opção 1</option>
+        <option value="option2">Opção 2</option>
+    </select>
+
+    <h2>Lista Dinâmica</h2>
+    <input type="text" id="taskInput" placeholder="Adicionar item à lista">
+    <button id="addTaskButton">Adicionar</button>
+    <ul id="taskList"></ul>
+
+    <h2>Tabela Dinâmica</h2>
+    <input type="text" id="input1" placeholder="Coluna 1">
+    <input type="text" id="input2" placeholder="Coluna 2">
+    <button id="addRowButton">Adicionar Linha</button>
+    <table>
+        <thead>
+            <tr>
+                <th>Coluna 1</th>
+                <th>Coluna 2</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+    </table>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const inputs = document.querySelectorAll('input[type="text"], input[type="number"], select');
+            inputs.forEach(input => {
+                const savedValue = localStorage.getItem(input.id);
+                if (savedValue) {
+                    input.value = savedValue;
+                }
+
+                input.addEventListener("input", () => {
+                    localStorage.setItem(input.id, input.value);
+                });
+            });
+
+            const ul = document.querySelector("#taskList");
+            const savedList = JSON.parse(localStorage.getItem("taskList")) || [];
+
+            savedList.forEach(task => {
+                const li = createListItem(task);
+                ul.appendChild(li);
+            });
+
+            document.querySelector("#addTaskButton").addEventListener("click", () => {
+                const taskInput = document.querySelector("#taskInput");
+                const taskText = taskInput.value;
+                if (taskText.trim() !== "") {
+                    const li = createListItem(taskText);
+                    ul.appendChild(li);
+
+                    savedList.push(taskText);
+                    localStorage.setItem("taskList", JSON.stringify(savedList));
+
+                    taskInput.value = "";
+                }
+            });
+
+            function createListItem(text) {
+                const li = document.createElement("li");
+                li.textContent = text;
+                return li;
+            }
+
+            const tableBody = document.querySelector("#tableBody");
+            const savedRows = JSON.parse(localStorage.getItem("tableRows")) || [];
+
+            savedRows.forEach(rowData => {
+                const row = createTableRow(rowData);
+                tableBody.appendChild(row);
+            });
+
+            document.querySelector("#addRowButton").addEventListener("click", () => {
+                const column1 = document.querySelector("#input1").value;
+                const column2 = document.querySelector("#input2").value;
+
+                if (column1.trim() !== "" && column2.trim() !== "") {
+                    const newRowData = { column1, column2 };
+                    const row = createTableRow(newRowData);
+                    tableBody.appendChild(row);
+
+                    savedRows.push(newRowData);
+                    localStorage.setItem("tableRows", JSON.stringify(savedRows));
+
+                    document.querySelector("#input1").value = "";
+                    document.querySelector("#input2").value = "";
+                }
+            });
+
+            function createTableRow(data) {
+                const tr = document.createElement("tr");
+                const td1 = document.createElement("td");
+                const td2 = document.createElement("td");
+
+                td1.textContent = data.column1;
+                td2.textContent = data.column2;
+
+                tr.appendChild(td1);
+                tr.appendChild(td2);
+                return tr;
+            }
+        });
+    </script>
+</body>
+</html>
