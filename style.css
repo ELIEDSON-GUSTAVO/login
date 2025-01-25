@@ -1,42 +1,72 @@
+/* Reset e estilo básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
     margin: 0;
     padding: 20px;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Estilo para os títulos */
+h1, h2 {
+    font-weight: normal;
+    margin-bottom: 10px;
 }
 
 h1 {
     color: #333;
+    font-size: 2.5em;
 }
 
 h2 {
     color: #555;
+    font-size: 1.8em;
 }
 
+/* Estilo para inputs e selects */
 input[type="text"],
 input[type="number"],
 select {
-    padding: 10px;
+    padding: 12px;
     margin: 10px 0;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 8px;
     width: 100%;
     box-sizing: border-box;
+    font-size: 1em;
+    transition: border-color 0.3s ease;
 }
 
+input[type="text"]:focus,
+input[type="number"]:focus,
+select:focus {
+    border-color: #007bff;
+}
+
+/* Estilo para o botão */
 button {
-    padding: 10px 15px;
+    padding: 12px 20px;
     background-color: #28a745;
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
+    font-size: 1.1em;
+    transition: background-color 0.3s ease;
 }
 
 button:hover {
     background-color: #218838;
 }
 
+/* Estilo para a tabela */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -44,13 +74,15 @@ table {
 }
 
 th, td {
-    padding: 10px;
+    padding: 12px;
     text-align: left;
     border: 1px solid #ddd;
+    font-size: 1em;
 }
 
 th {
     background-color: #f7f7f7;
+    font-weight: bold;
 }
 
 tbody tr:nth-child(even) {
@@ -61,6 +93,7 @@ tbody tr:hover {
     background-color: #f1f1f1;
 }
 
+/* Estilo para listas */
 ul {
     list-style-type: none;
     padding: 0;
@@ -68,25 +101,64 @@ ul {
 
 li {
     background-color: #fff;
-    padding: 10px;
-    margin: 5px 0;
+    padding: 12px;
+    margin: 8px 0;
     border: 1px solid #ddd;
-    border-radius: 5px;
+    border-radius: 8px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+/* Estilo para status de importação */
 #importStatus {
     margin-top: 20px;
     font-weight: bold;
+    color: #007bff;
 }
 
+/* Estilo para o carregando */
 #loading {
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 20px;
+    font-size: 1.2em;
     color: #555;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsividade */
+@media screen and (max-width: 768px) {
+    body {
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 2em;
+    }
+
+    h2 {
+        font-size: 1.5em;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    select,
+    button {
+        font-size: 1em;
+    }
+
+    table {
+        font-size: 0.9em;
+    }
+
+    li {
+        flex-direction: column;
+        align-items: flex-start;
+    }
 }
