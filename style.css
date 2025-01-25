@@ -6,83 +6,94 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 20px;
+    font-family: 'Roboto', sans-serif;
+    background-color: #f5f5f5;
     color: #333;
+    padding: 30px;
     line-height: 1.6;
 }
 
 /* Estilo para os títulos */
 h1, h2 {
-    font-weight: normal;
-    margin-bottom: 10px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+    color: #2c3e50;
 }
 
 h1 {
-    color: #333;
     font-size: 2.5em;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 10px;
 }
 
 h2 {
-    color: #555;
     font-size: 1.8em;
+    color: #16a085;
 }
 
-/* Estilo para inputs e selects */
+/* Inputs e Selects */
 input[type="text"],
 input[type="number"],
 select {
-    padding: 12px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 8px;
+    padding: 12px 18px;
+    margin: 12px 0;
+    border: 2px solid #ccc;
+    border-radius: 10px;
     width: 100%;
     box-sizing: border-box;
-    font-size: 1em;
-    transition: border-color 0.3s ease;
+    font-size: 1.1em;
+    background-color: #ffffff;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 input[type="text"]:focus,
 input[type="number"]:focus,
 select:focus {
-    border-color: #007bff;
+    border-color: #3498db;
+    box-shadow: 0 0 8px rgba(52, 152, 219, 0.6);
 }
 
-/* Estilo para o botão */
+/* Botão */
 button {
     padding: 12px 20px;
-    background-color: #28a745;
+    background-color: #3498db;
     color: white;
     border: none;
-    border-radius: 8px;
+    border-radius: 30px;
     cursor: pointer;
-    font-size: 1.1em;
-    transition: background-color 0.3s ease;
+    font-size: 1.2em;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 button:hover {
-    background-color: #218838;
+    background-color: #2980b9;
+    transform: scale(1.05);
 }
 
-/* Estilo para a tabela */
+button:active {
+    background-color: #1f6f8b;
+}
+
+/* Tabela */
 table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
+    font-size: 1.1em;
+    color: #2c3e50;
 }
 
 th, td {
-    padding: 12px;
+    padding: 15px;
     text-align: left;
     border: 1px solid #ddd;
-    font-size: 1em;
+    transition: background-color 0.3s ease;
 }
 
 th {
-    background-color: #f7f7f7;
-    font-weight: bold;
+    background-color: #3498db;
+    color: white;
 }
 
 tbody tr:nth-child(even) {
@@ -90,56 +101,64 @@ tbody tr:nth-child(even) {
 }
 
 tbody tr:hover {
-    background-color: #f1f1f1;
+    background-color: #ecf0f1;
 }
 
-/* Estilo para listas */
+/* Listas */
 ul {
     list-style-type: none;
     padding: 0;
 }
 
 li {
-    background-color: #fff;
-    padding: 12px;
-    margin: 8px 0;
-    border: 1px solid #ddd;
-    border-radius: 8px;
+    background-color: #ffffff;
+    padding: 15px;
+    margin: 10px 0;
+    border: 2px solid #ddd;
+    border-radius: 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
 }
 
-/* Estilo para status de importação */
+li:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Status de importação */
 #importStatus {
-    margin-top: 20px;
-    font-weight: bold;
-    color: #007bff;
+    margin-top: 30px;
+    font-weight: 600;
+    font-size: 1.2em;
+    color: #16a085;
 }
 
-/* Estilo para o carregando */
+/* Carregamento */
 #loading {
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 1.2em;
-    color: #555;
+    font-size: 1.4em;
+    color: #3498db;
     background-color: rgba(255, 255, 255, 0.9);
-    padding: 20px;
+    padding: 30px 40px;
     border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    font-weight: bold;
 }
 
 /* Responsividade */
 @media screen and (max-width: 768px) {
     body {
-        padding: 15px;
+        padding: 20px;
     }
 
     h1 {
-        font-size: 2em;
+        font-size: 2.2em;
     }
 
     h2 {
@@ -154,7 +173,7 @@ li {
     }
 
     table {
-        font-size: 0.9em;
+        font-size: 1em;
     }
 
     li {
