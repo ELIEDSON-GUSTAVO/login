@@ -105,13 +105,6 @@
             transform: scale(0.98);
         }
 
-        #attempts-left {
-            color: #fff;
-            margin-top: 10px;
-            font-size: 14px;
-            font-weight: 500;
-        }
-
         .error-message {
             color: #ff0000;
             font-size: 14px;
@@ -167,22 +160,17 @@
                     <input type="password" id="password" placeholder="Senha" required>
                 </div>
                 <button type="submit">Entrar</button>
-                <p id="attempts-left">Tentativas restantes: 5</p>
             </form>
             <p class="error-message" id="error-message"></p>
         </div>
     </div>
 
     <script>
-        // Lista de credenciais válidas
-        const validCredentials = [
-            { username: "engenharia1@nextimplementos.com.br", password: "Eng@2024" },
-            { username: "admin", password: "admin123" },
-            { username: "guest", password: "guest2023" },
-            { username: "eliedson", password: "projetos2025" } // Exemplo adicional
-        ];
-
-        let attempts = 5; // Número de tentativas permitidas
+        // Credencial padrão válida
+        const validCredential = {
+            username: "engenharia1@nextimplementos.com.br",
+            password: "Eng@2024"
+        };
 
         document.getElementById('login-form').addEventListener('submit', function (event) {
             event.preventDefault();
@@ -190,31 +178,18 @@
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
 
-            // Verifica se as credenciais fornecidas estão na lista
-            const isValid = validCredentials.some(
-                (cred) => cred.username === username && cred.password === password
-            );
-
-            if (isValid) {
+            // Verifica se as credenciais fornecidas correspondem às válidas
+            if (username === validCredential.username && password === validCredential.password) {
                 alert('Login bem-sucedido! Você será redirecionado...');
                 window.location.href = 'https://eliedson-gustavo.github.io/GERADOR_DE_PLANILHA_KAMBAM/';
             } else {
-                attempts--;
-                document.getElementById('attempts-left').textContent = `Tentativas restantes: ${attempts}`;
                 const errorMessage = document.getElementById('error-message');
                 errorMessage.textContent = 'Usuário ou senha incorretos!';
 
+                // Remove a mensagem de erro após 3 segundos
                 setTimeout(() => {
                     errorMessage.textContent = '';
                 }, 3000);
-
-                if (attempts === 0) {
-                    document.getElementById('error-message').textContent =
-                        'Limite de tentativas alcançado! Tente novamente mais tarde.';
-                    document.getElementById('username').disabled = true;
-                    document.getElementById('password').disabled = true;
-                    document.querySelector('button').disabled = true;
-                }
             }
         });
     </script>
