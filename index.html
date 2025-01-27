@@ -8,10 +8,10 @@
     <style>
         /* Corpo da página */
         body {
-            background-image: url('8d54fe_430af7f497cf44fbb293ff81807f5d58~mv2.jpeg'); /* Substitua 'sua-imagem.jpg' pelo caminho da sua imagem */
-            background-size: cover; /* A imagem vai cobrir toda a tela */
-            background-position: center; /* A imagem será centralizada */
-            background-attachment: fixed; /* A imagem ficará fixa ao rolar a página */
+            background-image: url('8d54fe_430af7f497cf44fbb293ff81807f5d58~mv2.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -32,7 +32,7 @@
 
         /* Caixa de login */
         .login-box {
-            background-color: rgba(26, 26, 26, 0.8); /* Fundo semitransparente para destacar o conteúdo */
+            background-color: rgba(26, 26, 26, 0.8);
             padding: 40px;
             border-radius: 15px;
             width: 350px;
@@ -42,7 +42,6 @@
             animation: slideIn 0.6s ease-out forwards;
         }
 
-        /* Animação de entrada */
         @keyframes slideIn {
             0% {
                 transform: translateY(50px);
@@ -62,7 +61,6 @@
             letter-spacing: 1px;
         }
 
-        /* Estilo dos campos de entrada */
         .input-field {
             margin-bottom: 20px;
             position: relative;
@@ -85,7 +83,6 @@
             box-shadow: 0 0 10px rgba(255, 204, 0, 0.5);
         }
 
-        /* Efeito hover do botão */
         button {
             width: 100%;
             padding: 15px;
@@ -108,7 +105,6 @@
             transform: scale(0.98);
         }
 
-        /* Texto de tentativas e erro */
         #attempts-left {
             color: #fff;
             margin-top: 10px;
@@ -123,7 +119,12 @@
             font-weight: 600;
         }
 
-        /* Transição suave dos elementos */
+        @media (max-width: 480px) {
+            .login-box {
+                width: 90%;
+            }
+        }
+
         .login-box input,
         .login-box button {
             opacity: 0;
@@ -142,7 +143,6 @@
             animation-delay: 0.7s;
         }
 
-        /* Animação fade in */
         @keyframes fadeIn {
             0% {
                 opacity: 0;
@@ -174,35 +174,43 @@
     </div>
 
     <script>
-        // Credenciais válidas (usuário e senha)
-        const validCredentials = {
-            username: "usuario",
-            password: "senha123"
-        };
+        // Lista de credenciais válidas
+        const validCredentials = [
+            { username: "usuario1", password: "senha123" },
+            { username: "admin", password: "admin123" },
+            { username: "guest", password: "guest2023" },
+            { username: "eliedson", password: "projetos2025" } // Exemplo adicional
+        ];
 
-        let attempts = 5;  // Número de tentativas permitidas
+        let attempts = 5; // Número de tentativas permitidas
 
-        // Função para validar login
         document.getElementById('login-form').addEventListener('submit', function (event) {
             event.preventDefault();
 
-            // Captura os valores inseridos
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
 
-            // Verifica se as credenciais são válidas
-            if (username === validCredentials.username && password === validCredentials.password) {
-                alert('Login bem-sucedido!');
-                // Redireciona para a URL desejada
+            // Verifica se as credenciais fornecidas estão na lista
+            const isValid = validCredentials.some(
+                (cred) => cred.username === username && cred.password === password
+            );
+
+            if (isValid) {
+                alert('Login bem-sucedido! Você será redirecionado...');
                 window.location.href = 'https://eliedson-gustavo.github.io/GERADOR_DE_PLANILHA_KAMBAM/';
             } else {
                 attempts--;
                 document.getElementById('attempts-left').textContent = `Tentativas restantes: ${attempts}`;
-                document.getElementById('error-message').textContent = 'Usuário ou senha incorretos!';
+                const errorMessage = document.getElementById('error-message');
+                errorMessage.textContent = 'Usuário ou senha incorretos!';
 
-                // Bloqueia o login após 5 tentativas
+                setTimeout(() => {
+                    errorMessage.textContent = '';
+                }, 3000);
+
                 if (attempts === 0) {
-                    document.getElementById('error-message').textContent = 'Limite de tentativas alcançado! Tente novamente mais tarde.';
+                    document.getElementById('error-message').textContent =
+                        'Limite de tentativas alcançado! Tente novamente mais tarde.';
                     document.getElementById('username').disabled = true;
                     document.getElementById('password').disabled = true;
                     document.querySelector('button').disabled = true;
