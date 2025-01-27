@@ -21,7 +21,6 @@
             overflow: hidden;
         }
 
-        /* Container do login */
         .login-container {
             display: flex;
             justify-content: center;
@@ -30,7 +29,6 @@
             width: 100%;
         }
 
-        /* Caixa de login */
         .login-box {
             background-color: rgba(26, 26, 26, 0.8);
             padding: 40px;
@@ -152,12 +150,26 @@
     <div class="login-container">
         <div class="login-box">
             <h2>Login</h2>
-            <form id="login-form">
+            <form id="login-form" action="#">
                 <div class="input-field">
-                    <input type="text" id="username" name="username" autocomplete="username" placeholder="Usuário" required>
+                    <!-- Campo de e-mail ajustado -->
+                    <input 
+                        type="email" 
+                        id="email" 
+                        name="email" 
+                        autocomplete="username" 
+                        placeholder="Usuário (E-mail)" 
+                        required>
                 </div>
                 <div class="input-field">
-                    <input type="password" id="password" name="password" autocomplete="current-password" placeholder="Senha" required>
+                    <!-- Campo de senha ajustado -->
+                    <input 
+                        type="password" 
+                        id="password" 
+                        name="password" 
+                        autocomplete="current-password" 
+                        placeholder="Senha" 
+                        required>
                 </div>
                 <button type="submit">Entrar</button>
             </form>
@@ -166,26 +178,22 @@
     </div>
 
     <script>
-        // Credencial padrão válida
         const validCredential = {
-            username: "engenharia1@nextimplementos.com.br",
+            email: "engenharia1@nextimplementos.com.br",
             password: "Eng@2024"
         };
 
         document.getElementById('login-form').addEventListener('submit', function (event) {
             event.preventDefault();
 
-            const username = document.getElementById('username').value;
+            const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
 
-            // Verifica se as credenciais fornecidas correspondem às válidas
-            if (username === validCredential.username && password === validCredential.password) {
+            if (email === validCredential.email && password === validCredential.password) {
                 window.location.href = 'https://eliedson-gustavo.github.io/GERADOR_DE_PLANILHA_KAMBAM/';
             } else {
                 const errorMessage = document.getElementById('error-message');
                 errorMessage.textContent = 'Usuário ou senha incorretos!';
-
-                // Remove a mensagem de erro após 3 segundos
                 setTimeout(() => {
                     errorMessage.textContent = '';
                 }, 3000);
@@ -194,4 +202,3 @@
     </script>
 </body>
 </html>
-
