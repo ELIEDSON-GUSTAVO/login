@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" type="image/jpg" href="WhatsApp Image 2025-01-27 at 09.42.20.jpeg"/>
     <title>Login</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
@@ -155,10 +154,10 @@
             <h2>Login</h2>
             <form id="login-form">
                 <div class="input-field">
-                    <input type="text" id="username" placeholder="Usuário" required>
+                    <input type="text" id="username" name="username" autocomplete="username" placeholder="Usuário" required>
                 </div>
                 <div class="input-field">
-                    <input type="password" id="password" placeholder="Senha" required>
+                    <input type="password" id="password" name="password" autocomplete="current-password" placeholder="Senha" required>
                 </div>
                 <button type="submit">Entrar</button>
             </form>
@@ -195,3 +194,4 @@
     </script>
 </body>
 </html>
+
